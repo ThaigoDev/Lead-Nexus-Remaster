@@ -1,0 +1,87 @@
+.modal-export { 
+    .modal-body{ 
+       
+        
+        .business-info {
+
+            display: flex;
+            align-items:center;
+            justify-content: start; 
+            flex-direction: column; 
+            height: 27vh; 
+            gap: 1vh; 
+            border-bottom: 1px solid silver;
+        }
+        .logotipo-roman  {
+            height: 15vh; 
+            img {
+                height: 100%;
+            }
+          } 
+          .locals {
+            display: flex;
+            align-items:center;
+            justify-content: start;
+            flex-direction: column;   
+            width: 100%;
+            
+            h2 {
+                font-size: 1.1em; 
+                font-weight: bold;
+            }  
+            p{
+                font-size: 1.1em;
+            }
+            .enderess,.contact {
+                display: flex; 
+                align-items: center;
+                justify-content: center; 
+                gap: 1vh;
+            }
+    
+          }  
+          .infos-area {
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            gap: 2vh;  
+            flex-direction: row;
+            flex-wrap: wrap;
+            .area-rom {
+                width: 20vw; 
+                display: flex;
+                align-items: center;
+                justify-content: start;   
+                bak
+                span {
+                    font-weight: bold;
+                }
+                p{
+                  
+                    font-size: 1.1em;
+                }
+
+            }
+          }
+         
+          .sales,.info-Client,.info-romaneio {
+            display: flex;
+            align-content: center; 
+            justify-content: center; 
+            flex-direction: column; 
+            text-align: center; 
+            gap: 2vh; 
+            h2 { 
+                font-size: 1.5em;
+                background-color: silver; 
+                color: rgb(58, 58, 58); 
+                border-radius: 0.5vh;
+            }
+          } 
+          .rom-total {
+            background-color: rgb(226, 226, 226); 
+            text-align: end;
+          }
+    }
+    
+}

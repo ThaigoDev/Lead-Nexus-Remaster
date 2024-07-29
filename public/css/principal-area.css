@@ -1,0 +1,238 @@
+.dash {
+  height: calc(100vh - 15vh);
+  grid-area: dash;
+  display: flex;
+  justify-content: start;
+  padding-bottom: 10vh;
+  width: calc(100vw - 15vw);
+  overflow-y: scroll;
+  background-color: white; 
+  overflow-x: scroll; 
+  flex-direction: column; 
+  gap: 3vh;
+}
+
+.geral-view {
+  width: 96%;
+
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: row;
+  gap: 2vh;
+}
+.total-leads {
+  background-color: black;
+  width: 30%;
+  border-radius: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 3vh;
+}
+.total-view {
+  background-color: #f1f1f1;
+  width: 30%;
+  color: white;
+
+  border-radius: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 3vh;
+}
+.text-total-view {
+  color: black;
+  display: flex;
+  gap: 17vh;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  bottom: 20%;
+  padding: 2vh;
+  padding-left: 4vh;
+}
+
+.text-total-lead {
+  color: white;
+  display: flex;
+  gap: 17vh;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  bottom: 20%;
+  padding: 2vh;
+  padding-left: 4vh;
+}
+.count {
+  color: black;
+  width: 100%;
+  padding-left: 3vh;
+  font-size: 4em;
+}
+.button-view-all-type-2 {
+  background-color: #e1e1e1;
+  padding: 1vh;
+  clip-path: circle();
+  height: 4vh; 
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+   position: relative; 
+   bottom: 3vh; 
+   left: 9vh;
+}
+.button-view-all-type-2 img {
+  height: 100%;
+}
+
+.button-view-all {
+  background-color: white;
+  padding: 1vh;
+  clip-path: circle();
+  cursor: pointer;
+  height: 4vh;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  position: relative; 
+  bottom: 3vh; 
+  left: 10vh;
+}
+.button-view-all img {
+  height: 100%;
+}
+.go-leads {
+  cursor: pointer;
+}
+#leads-count {
+  font-size: 4em;
+  color: white;
+  width: 100%;
+  padding-left: 3vh;
+}
+#nome-lead {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: row;
+  gap: 3vh;
+}
+#nome-lead img {
+  height: 4vh; 
+} 
+.lead-img {
+  clip-path: circle(); 
+  background-color: black;
+} 
+#new-Lead {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.5vh;
+  clip-path: circle();
+  border: none;
+  cursor: pointer;
+  background: transparent;
+}
+#new-Lead img {
+  height: 100%;
+}
+#new-Lead img:hover {
+  filter: grayscale(1);
+  transform: scale(1.05);
+}
+
+.lead-mail {
+  width: 30vw;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+}
+.lead-local-infos {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2vh;
+}
+.spiner-area {
+  background-color: white;
+  width: 100vw;
+  cursor: none;
+  height: 100vh;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+}
+.loader {
+  animation: rotate 1s infinite;
+  height: 50px;
+  width: 50px;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  display: block;
+  height: 20px;
+  width: 20px;
+}
+.loader:before {
+  animation: box1 1s infinite;
+  background-color: silver;
+  box-shadow: 30px 0 0 black;
+  margin-bottom: 10px;
+}
+.loader:after {
+  animation: box2 1s infinite;
+  background-color: black;
+  box-shadow: 30px 0 0 #fff;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg) scale(0.8);
+  }
+  50% {
+    transform: rotate(360deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(720deg) scale(0.8);
+  }
+}
+
+@keyframes box1 {
+  0% {
+    box-shadow: 30px 0 0 black;
+  }
+  50% {
+    box-shadow: 0 0 0 black;
+    margin-bottom: 0;
+    transform: translate(15px, 15px);
+  }
+  100% {
+    box-shadow: 30px 0 0 black;
+    margin-bottom: 10px;
+  }
+}
+
+@keyframes box2 {
+  0% {
+    box-shadow: 30px 0 0 black;
+  }
+  50% {
+    box-shadow: 0 0 0 black;
+    margin-top: -20px;
+    transform: translate(15px, 15px);
+  }
+  100% {
+    box-shadow: 30px 0 0 silver;
+    margin-top: 0;
+  }
+}

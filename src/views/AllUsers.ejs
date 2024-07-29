@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Thiago Duarte Miranda Dias" />
+  <link rel="stylesheet" href="/css/Home.css" />
+  <link rel="shortcut icon" href="assets/utilites/logo.svg" type="image/x-icon" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/sideBar.css" />
+  <link rel="stylesheet" href="/css/profilePhoto.css" />
+  <link rel="stylesheet" href="/css/principal-area.css" />
+  <link rel="stylesheet" href="/css/register-area-product.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
+  <link rel="stylesheet" href="/css/more-infos.css" />
+  <link rel="stylesheet" href="/css/spinner.css">
+  <link rel="stylesheet" href="/css/search.css" /> 
+  <link rel="stylesheet" href="/css/allUsersAdmin.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <title>Lead Nexus Todos os Usuários</title>
+</head>
+
+<body>
+  <!--Area Principal -->
+  <main id="content" class="content">
+    <%- include("Header.ejs",{user: user}) %>
+      <div class="slidebar">
+        <div class="logo">
+          <img src="/utilites/logo.png" alt="LOGO" />
+        </div>
+        <ul class="links-bar">
+          <% if(user.office!=="Administrador" ) { %>
+            <li>
+              <a href="/dashboard/index/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-grid-1x2"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M6 1H1v14h5zm9 0h-5v5h5zm0 9v5h-5v-5zM0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1zm1 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1z" />
+                </svg> 
+                Dashboard
+              </a>
+            </li>
+            <% }else { %>
+              <li>
+                <a href="/dashboardadm/index/">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-grid-1x2"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="M6 1H1v14h5zm9 0h-5v5h5zm0 9v5h-5v-5zM0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1zm1 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1z" />
+                  </svg> 
+                  Dashboard
+                </a>
+              </li>
+              <% } %>
+                <% if(user.office==="Administrador" ) { %>
+                  <li class="selected-page">
+                    <a href="/allUsers/index/">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+                        class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                        <path fill-rule="evenodd"
+                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                      </svg> 
+                      Usuários
+                    </a>
+                  </li>
+                  <% } %>
+
+                    <li>
+                      <a href="/crm/index/"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+                          class="bi bi-heart" viewBox="0 0 16 16">
+                          <path
+                            d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+                        </svg> 
+                        CRM
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/home/index/"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+                          class="bi bi-people" viewBox="0 0 16 16">
+                          <path
+                            d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
+                        </svg> 
+                        Leads
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href="/product/index/">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+                          class="bi bi-box-seam" viewBox="0 0 16 16">
+                          <path
+                            d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2zm3.564 1.426L5.596 5 8 5.961 14.154 3.5zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464z" />
+                        </svg> 
+                        Produtos
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/sales/index/">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+                          class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                          <path
+                            d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z" />
+                        </svg> 
+                        Vendas
+                      </a>
+                    </li>
+
+                    <li id="sentings">
+                      <a href="/settings/index/">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-gear"
+                          viewBox="0 0 16 16">
+                          <path
+                            d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
+                          <path
+                            d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
+                        </svg> 
+                        Configurações
+                      </a>
+                    </li>
+                    <li id="exit">
+                      <a href="/home/index/logout">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+                          class="bi bi-unindent" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd"
+                            d="M13 8a.5.5 0 0 0-.5-.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H12.5A.5.5 0 0 0 13 8" />
+                          <path fill-rule="evenodd" d="M3.5 4a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 1 0v-7a.5.5 0 0 0-.5-.5" />
+                        </svg>
+                      Logout
+                      </a> 
+                    </li>
+        </ul>
+      </div>
+      <main class="dash d-flex align-items-center">
+
+        <% if(allUsers.length>0 ) { %>
+          <section class="area-product d-flex  w-100">
+            <table class="table  table-borderless table-hover w-100">
+              <thead class="table-light">
+                <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>E-mail</th>
+                  <th>Cargo</th>
+                  <th>Ações</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <% let i=0 ; %>
+                  <% allUsers.forEach((users)=> { %>
+                   <% if(users.nome !== user.nome)  { %>
+                    <% i++ %>
+                    <tr id="lead-" <% i %> >
+                      <td>
+                        <%= i %>
+                      </td>
+                      <td id="nome-lead">
+                        <div class="lead-img">
+                          <% if(users.userPhoto) { %>
+                            <img  class=" <% if(users.office ==="Administrador") { %> admin <%}else {%> user-foto<% } %>" src="/uploads/<%= users.userPhoto %>" alt="">
+                            <% } else { %>
+                              <img  class="<% if(users.office ==="Administrador") { %> admin <%}else {%> user-foto<% } %> d-flex align-items-center justify-items-center" src="/utilites/user-photo.png" alt="">
+                              <% }%>
+
+                        </div>
+                        <span class="badge rounded-pill text-bg-dark">
+                          <%= users.nome %>
+                        </span>
+
+                      </td>
+                      <td>
+                        <span class="badge rounded-pill text-bg-secondary">
+                          <%= users.email %>
+                        </span>
+                      </td>
+                      <td>
+                        <% if(users.office==="Administrador" ) { %>
+
+                          <span class="badge rounded-pill text-bg-danger">
+                            <%= users.office %>
+                          </span>
+                          <% } else { %>
+                            <span class="badge rounded-pill text-bg-warning">
+                              <%= users.office %>
+                            </span>
+
+                            <% } %>
+                      </td>
+                      <td class="d-flex">
+                        <button type="button" class="btn btn-dark s," data-bs-toggle="offcanvas"
+                          data-bs-target="#OffcanvasRight<%= i %>" aria-controls="OffcanvasRight<%= i %>"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-pen" viewBox="0 0 16 16">
+                            <path
+                              d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
+                          </svg>
+                        </button>
+                        <div class="offcanvas  offcanvas-end  w-25" tabindex="-1" id="OffcanvasRight<%= i %>"
+                          aria-labelledby="offcanvasRightLabel">
+                          <div class="offcanvas-header">
+                            <h5 class="offcanvas-title fs-5" id="offcanvasRightLabel">Editar Usuário</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                              aria-label="Close"></button>
+                          </div>
+                          <div class="offcanvas-body">
+
+                            <fieldset id="register-area"
+                              class="register-area-lead   d-flex align-items-start justify-content-center">
+                              <form class="row g-3 w-100" action="/allUsers/edit/<%= users._id %>" method="POST">
+                                <div class="col-md-6 user-photo  d-flex align-items-center justify-content-center ">
+                                  <div class="profile-pic">
+                                    <% if(users.userPhoto) { %>
+
+                                      <img src="/uploads/<%= users.userPhoto%>" class="output" id="output-<%= i %>"
+                                        width="200" />
+                                      <% }else { %>
+
+                                        <img src="/utilites/user-photo.png" class="output" id="output-<%= i %>"
+                                          width="200" />
+                                        <% }%>
+                                  </div>
+                                </div>  
+                                <div class="input-area w-100">
+                                  <div class="col-md-4 inputs">
+                                    <label for="inputProduct4" class="form-label">Nome</label>
+                                    <input type="text" class="form-control" disabled value="<%= users.nome %>"
+                                      name="nome" required id="inputProduct4">
+                                  </div>
+                                  <div class="col-md-4 inputs">
+                                    <label for="email" class="form-label">E-mail</label>
+                                    <input type="email" name="email" class="form-control" disabled
+                                      value="<%= users.email %>" required id="mail" placeholder="E-mail">
+                                  </div>
+                                  <div class="col-md-4 inputs">
+                                    <label for="type_lead" class="form-label">Cargo</label>
+                                    <select class="form-select" required name="office" id="type_lead">
+                                      <option value="<%= users.office %>" disabled selected>
+                                        <%= users.office %>
+                                      </option>
+                                      <option value="Administrador">Administrador</option>
+                                      <option value="Colaborador">Colaborador</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                 <div class="col-12">
+                                  <button type="submit" class="btn btn-primary"> Editar Usuário  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                    <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z"/>
+                                  </svg></button>
+                                </div>
+                              </form>
+                            </fieldset>
+                          </div>
+                        </div>
+                        <!--Button delete-->
+                        <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop-<%= i %>"><svg xmlns="http://www.w3.org/2000/svg"
+                          width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                          <path
+                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                          <path
+                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                        </svg>
+                      </button>
+                  
+                      <!---Modal  Delete-->
+                      <div class="modal fade" id="staticBackdrop-<%= i %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="staticBackdropLabel">Deseja Apagar os Dados Desse Usurário ? </h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              Ao clicar em "apagar", você estará realizando uma ação irreversível. Certifique-se de que deseja prosseguir, pois não será possível recuperar os dados depois.
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> 
+                              <a href="/allUsers/delete/<%= users._id  %>">
+                                <button type="button" class="btn btn-danger">Apagar</button>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div> 
+
+                      </td>
+                    </tr>
+                   <% }%>
+                  
+                  <% }); %>
+              </tbody>
+            </table>
+          </section>
+
+          <% }else { %>
+            <div class="alert alert-warning text-center position-fixed " role="alert">
+              Nenhum  Usuário Existente
+            </div>
+
+            <% } %>
+
+      </main>
+
+      <div class="search">
+        <button id="button-search" class="button-seach">
+          <img src="/utilites/search.svg" alt="" />
+        </button>
+        <input id="Search-bar" placeholder="Pesquisar..." type="search" class="Barra-de-Pesquisa" />
+      </div>
+
+  </main>
+
+
+  <!-- SCRIPTS-->
+
+  <script>
+    var loadFileEdit = function (event, i) {
+      var image = document.getElementById(`output-${i}`);
+      image.src = URL.createObjectURL(event.target.files[0]);
+    }
+  </script>
+  <script src="/js/Jquery/code.jquery.com_jquery-3.7.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
+    integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <script type="module" src="/js/Home.js"></script>
+  <script src="/js/table2excel.js"></script>
+  <script src="/js/HomeAnimations.js"></script>
+</body>
+
+</html>

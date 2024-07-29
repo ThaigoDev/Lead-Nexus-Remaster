@@ -1,0 +1,73 @@
+.modal-export .modal-body .business-info {
+   display: flex !important; 
+  align-items: center !important;
+  justify-content: start !important;
+  flex-direction: column!important;
+  height: 27vh !important;
+  gap: 1vh !important;
+  border-bottom: 1px solid silver!important;
+}
+.modal-export .modal-body .logotipo-roman {
+  height: 15vh!important;
+}
+.modal-export .modal-body .logotipo-roman img {
+  height: 100%!important;
+}
+.modal-export .modal-body .locals {
+  display: flex!important;
+  align-items: center!important;
+  justify-content: start!important;
+  flex-direction: column!important;
+  width: 100%!important;
+}
+.modal-export .modal-body .locals h2 {
+  font-size: 1.1em!important;
+  font-weight: bold!important;
+}
+.modal-export .modal-body .locals p {
+  font-size: 1.1em!important;
+}
+.modal-export .modal-body .locals .enderess, .modal-export .modal-body .locals .contact {
+  display: flex!important;
+  align-items: center!important;
+  justify-content: center!important;
+  gap: 1vh;
+}
+.modal-export .modal-body .infos-area {
+  display: flex !important;
+  align-items: center!important;
+  justify-content: center!important;
+  gap: 2vh!important;
+  flex-direction: row!important;
+  flex-wrap: wrap!important;
+}
+.modal-export .modal-body .infos-area .area-rom {
+  width: 20vw!important;
+  display: flex!important;
+  align-items: center!important;
+  justify-content: start!important;
+}
+.modal-export .modal-body .infos-area .area-rom bak span {
+  font-weight: bold!important;
+}
+.modal-export .modal-body .infos-area .area-rom p {
+  font-size: 1.1em!important;
+}
+.modal-export .modal-body .sales, .modal-export .modal-body .info-Client, .modal-export .modal-body .info-romaneio {
+  display: flex!important;
+  align-content: center!important;
+  justify-content: center!important;
+  flex-direction: column!important;
+  text-align: center!important;
+  gap: 2vh;
+}
+.modal-export .modal-body .sales h2, .modal-export .modal-body .info-Client h2, .modal-export .modal-body .info-romaneio h2 {
+  font-size: 1.5em!important;
+  background-color: silver!important;
+  color: rgb(58, 58, 58)!important;
+  border-radius: 0.5vh!important;
+}
+.modal-export .modal-body .rom-total {
+  background-color: rgb(226, 226, 226)!important;
+  text-align: end!important;
+}/*# sourceMappingURL=Sales.css.map */

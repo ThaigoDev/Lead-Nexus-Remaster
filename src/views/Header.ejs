@@ -1,0 +1,25 @@
+<header class="cabecalho"> 
+  <div class="notification-area">
+    <div class="notification-img">
+      <img src="/utilites/notifications-icon]].svg" alt="" />
+    </div>
+    <div class="notification-text">Notificações</div>
+    <div class="number-of-notifications">4</div>
+  </div>
+  <div class="user-dados">
+    <div class="user-name">
+      <p class="Username">Olá, <span class="name-user">
+          <%= user.nome %>
+        </span></p>
+    </div>
+    <a href="setings-page/index.html">
+      <% if(user.userPhoto) { %> 
+        <img id="user-foto" class=" <% if(user.office ==="Administrador") { %> admin <%}else {%> user-foto<% } %>"  src="/uploads/<%=user.userPhoto%>" alt="" />
+
+      <% }else { %> 
+        <img id="user-foto" class=" <% if(user.office ==="Administrador")  { %> admin <%}else {%> user-foto<% } %>" src="/utilites/user-photo.png"  alt="" />
+
+      <% }%>
+    </a>
+  </div>
+</header>

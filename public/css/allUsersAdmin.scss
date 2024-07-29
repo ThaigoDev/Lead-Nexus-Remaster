@@ -1,0 +1,15 @@
+
+ .input-area { 
+    display: flex; 
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    .inputs  {
+        width: 50%;
+    }
+ }  
+ .user-photo {
+    background-color: yellow; 
+     height: 20vh;
+ } 
+ 

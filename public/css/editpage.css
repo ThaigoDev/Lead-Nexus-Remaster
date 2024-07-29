@@ -1,0 +1,234 @@
+.register {
+  overflow: hidden;
+  z-index: 3;
+  background-color: white;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.text {
+  color: black;
+  padding-bottom: 2vh;
+}
+.desfoque {
+  backdrop-filter: blur(10px);
+}
+.close {
+  height: 4%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+.close:hover {
+  background-color: red;
+  transition: 1s;
+}
+.close img {
+  height: 100%;
+}
+.close img:hover {
+  filter: invert(1);
+}
+.close2 {
+  height: 7%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+.close2 img {
+  height: 100%;
+}
+.register-area {
+  border: none;
+  color: white;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.new-lead-img {
+  height: 20vh;
+}
+
+.new-lead-img img {
+  height: 100%;
+}
+.register-area form {
+  display: grid;
+  grid-template-areas:
+    "simple local"
+    "simple material";
+
+  height: 100%;
+  width: 100%;
+}
+.simple {
+  grid-area: simple;
+  width: 35vw;
+  border-radius: 5vh;
+  height: 95vh;
+  display: flex;
+  padding-top: 9vh;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.inputs {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.inputs small {
+  position: relative;
+  right: 13%;
+  display: none;
+}
+.simple input, #type_lead {
+  padding: 2vh;
+  width: 20vw;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid black;
+
+  margin: 1vh;
+  color: black;
+} 
+#type_lead:focus {
+  outline: none;
+
+}
+.inputs img {
+  height: 2.5vh;
+  position: absolute;
+  left: 6.5%;
+}
+.title-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 2vh;
+
+  width: 19%;
+
+  color: black;
+}
+
+.lead-local-infos {
+  grid-area: local;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  border-bottom: 1px dotted gray;
+  width: 65vw;
+  height: 100%;
+}
+
+.title-area img {
+  height: 4vh;
+}
+.material-area-info {
+  grid: material;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 65vw;
+
+  height: 100%;
+}
+
+form input:focus {
+  outline: 0;
+}
+
+.lead-local-infos #date,
+#cidade,
+#uf,
+#material,
+#Processo {
+  padding: 0.5vh 1vh;
+  border: none;
+  width: 30vw;
+  margin: 2vh;
+  cursor: pointer;
+  background-color: transparent;
+  color: black;
+  border-bottom: 1px solid black;
+}
+.lead-local-infos #date:focus,
+#cidade:focus,
+#uf:focus,
+#material:focus,
+#Processo:focus {
+  outline: none;
+}
+
+.material-area-info #TipoDeMaterial,
+#responsavel,
+#date {
+  padding: 0.5vh 1vh;
+  border: none;
+  width: 30vw;
+  margin: 2vh;
+  cursor: pointer;
+  background-color: transparent;
+  color: black;
+  border-bottom: 1px solid black;
+}
+.material-area-info #TipoDeMaterial:focus,
+#responsavel:focus {
+  outline: none;
+}
+.sell-flux {
+  background-color: #01061c;
+  border: none;
+  width: 5%;
+  height: 7%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  clip-path: circle();
+  position: fixed;
+  bottom: 10%;
+  right: 1%;
+
+  cursor: pointer;
+}
+.sell-flux img {
+  height: 100%;
+}
+
+#register-btn {
+  background-color: green;
+  width: 20vw;
+  height: 7vh;
+  border-radius: 10vh;
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  transition: 0.5s;
+  cursor: pointer;
+  position: absolute;
+  left: 7%;
+  bottom: 25%;
+}
+#register-btn:hover {
+  background-color: gray;
+  transform: scale(1.05);
+}

@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Arimo", sans-serif;
+}
+.desfoque {
+  filter: blur(10px);
+}
+.content {
+  z-index: 0;
+  display: grid;
+  overflow: hidden;
+  height: 100vh;
+
+  grid-template-areas:
+    "slidebar header "
+    " slidebar dash ";
+
+  width: 100vw;
+}

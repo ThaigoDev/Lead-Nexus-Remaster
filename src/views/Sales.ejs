@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Thiago Duarte Miranda Dias" />
+  <link rel="stylesheet" href="/css/Home.css" />
+  <link rel="shortcut icon" href="assets/utilites/logo.svg" type="image/x-icon" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/sideBar.css" />
+  <link rel="stylesheet" href="/css/principal-area.css" />
+  <link rel="stylesheet" href="/css/register-area-product.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
+  <link rel="stylesheet" href="/css/more-infos.css" />
+  <link rel="stylesheet" href="/css/search.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/Sales.css">
+ 
+  <link rel="stylesheet" href="/css/spinner.css">
+ 
+
+
+  <title>Lead-Nexus-Vendas</title>
+</head>
+
+<body>
+
+  <!-- REGISTER-AREA -->
+
+  <div class="offcanvas offcanvas-end w-50" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title fs-5" id="offcanvasRightLabel">Nova Venda</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+
+      <fieldset id="register-area" class="register-area d-flex align-items-start justify-content-center">
+
+        <form class="row g-3 w-100" action="/sale/create/" method="post">
+          <div class="col-md-6">
+            <label for="inputClient" class="form-label">Cliente</label>
+            <select class="form-select" id="inputClient" required name="client" aria-label="Default select example">
+              <option selected disabled>Selecione o Cliente</option>
+              <% allLeads.forEach(lead=>{ %>
+                <option value="<%= lead.name %>">
+                  <%= lead.name %>
+                </option>
+                <% }) %>
+
+                  <option value="Nenhum">Nenhum</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="inputEmail" class="form-label">E-mail</label>
+            <input type="email" class="form-control" name="email" placeholder="exemplo@teste.com.br" required
+              id="inputEmail">
+          </div>
+          <div class="col-md-6">
+            <label for="inputTel" class="form-label">Telefone</label>
+            <input type="text" name="tel" class="form-control" required id="inputTel" placeholder="(00) 0000-0000">
+          </div>
+          <div class="col-md-6">
+            <label for="material" class="form-label">Categoria <span
+                style="color: #0B5ED7; font-weight: bold; cursor: pointer;" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">+</span></label>
+            <select class="form-select" required name="productCategory" id="material"
+              aria-label="Default select example">
+              <option selected disabled>Selecione a Categoria</option>
+              <% categories.forEach(category=>{ %>
+                <option value="<%= category.name %>">
+                  <%= category.name %>
+                </option>
+                <% }) %>
+                  <option value="Nenhum">Nenhum</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="TipoDeMaterial" class="form-label">Produto/Serviço</label>
+            <select class="form-select" required name="productOurService" id="TipoDeMaterial"
+              aria-label="Default select example">
+              <option selected disabled>Selecione o Produto/Serviço</option>
+              <option value="Nenhum">Nenhum</option>
+            </select>
+          </div>
+         
+          <div class="col-md-6">
+            <label for="inputPrice" class="form-label ">Preço de Venda R$</label>
+            <input type="text" required name="price" format="currency" precision="2" class="form-control money"
+              id="inputPrice" placeholder="R$ 00,00">
+          </div>
+         
+          <div class="col-md-6">
+            <label for="inputDescount" class=" form-label">Desconto Aplicado R$</label>
+            <input type="text" required name="descount" format="currency" precision="2" class="form-control money"
+              id="inputDescount" placeholder="R$ 00,00">
+          </div>
+          <div class="col-md-6">
+            <label for="inputTotal" class="form-label">Subtotal R$</label>
+            <input type="text" class="form-control money " name="subtotal" required placeholder="R$ 00,00"
+              id="inputTotal">
+          </div>
+          <div class="col-md-4">
+            <label for="inputSaleCode" class="form-label">Código de Venda</label>
+            <input type="text" class="form-control" name="code" required id="inputSaleCode">
+          </div>
+          <div class="col-md-4">
+            <label for="payment" class="form-label">Forma de Pagamento</label>
+            <select class="form-select" required name="payment" id="payment" aria-label="Default select example">
+              <option selected disabled>Selecione a Forma de Pagamento</option>
+              <option value="PIX ">
+                Pix
+              </option>
+              <option value="Boleto">
+                Boleto
+              </option>
+              <option value="Cartão">
+                Cartão
+              </option>
+              <option value="Nenhum">Nenhum</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="status" class="form-label">Status da Venda</label>
+            <select class="form-select" required name="status" id="status" aria-label="Default select example">
+              <option selected disabled>Selecione o Status</option>
+              <option value="Concluída">
+                <span class="badge text-bg-success">Concluída</span>
+              </option>
+              <option value="Pendente">
+                Pendente
+              </option>
+              <option value="Cancelada">
+                Cancelada
+              </option>
+              <option value="Nenhum">Nenhum</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="inputDate" class="form-label">Date da Venda*</label>
+            <input required type="datetime-local" name="date" class="form-control" id="inputDate">
+          </div>
+          <div class="col-md-6">
+            <label for="saller" class="form-label">Vendedor</label>
+            <select class="form-select" required name="saller" id="saller" aria-label="Default select example">
+              <option selected disabled>Selecione o Vendedor</option>
+              <%allUsers.forEach(saller=>{ %>
+                <option value="<%= saller.nome %>">
+                  <%= saller.nome %>
+                </option>
+                <% }) %>
+                  <option value="Nenhum">Nenhum</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">Cadastrar Venda</button>
+          </div>
+        </form>
+      </fieldset>
+    </div>
+  </div>
+  <!--Modal de categorias-->
+  <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+    aria-labelledby="offcanvasWithBothOptionsLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Adicionar Categoria</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <form class="row gy-2 gx-3 align-items-center" action="/category/create/" method="post">
+        <div class="col-auto">
+          <label class="visually-hidden" for="autoSizingInput">Nome</label>
+          <input required type="text" class="form-control" id="autoSizingInput" name="name" placeholder="Categoria">
+        </div>
+
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+      </form>
+      <ul class="list-group p-2">
+        <li class="list-group-item active" aria-current="true">Categorias</li>
+        <% categories.forEach(category=>{ %>
+          <li class="list-group-item">
+            <div class="modal-item-body d-flex  align-items-center justify-content-start flex-row">
+              <%= category.name %>
+                <a class="position-absolute end-0 h-25 w-25" href="/category/delete/<%=category._id %>"><button
+                    type="button" class="btn-close" aria-label="Close"></button></a>
+            </div>
+
+          </li>
+          <% }) %>
+
+      </ul>
+    </div>
+  </div>
+
+  <!--Modal de processo  -->
+  <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
+    aria-labelledby="staticBackdropLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="staticBackdropLabel">Adicionar Processo</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div>
+        <form class="row gy-2 gx-3 align-items-center" action="/process/create/" method="POST">
+          <div class="col-auto">
+            <label class="visually-hidden" for="autoSizingInput">Processo</label>
+            <input required type="text" class="form-control" id="autoSizingInput" name="process"
+              placeholder=" Nome do Processo">
+          </div>
+
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+          </div>
+        </form>
+      </div>
+      <ul class="list-group p-2">
+        <li class="list-group-item active" aria-current="true">Processo</li>
+        <% allProcess.forEach(prcss=>{ %>
+          <li class="list-group-item">
+            <div class="modal-item-body d-flex  align-items-center justify-content-start flex-row">
+              <%= prcss.process %>
+                <a class="position-absolute end-0 h-25 w-25" href="/process/delete/<%=prcss._id %>"><button
+                    type="button" class="btn-close" aria-label="Close"></button></a>
+            </div>
+          </li>
+          <% }) %>
+
+      </ul>
+    </div>
+  </div>
+
+  <!--Area Principal -->
+  <main id="content" class="content">
+    <%- include("Header.ejs",{user: user}) %>
+      <div class="slidebar">
+        <div class="logo">
+          <img src="/utilites/logo.png" alt="LOGO" />
+        </div>
+        <ul class="links-bar">
+          <% if(user.office!=="Administrador" ) { %>
+            <li>
+              <a href="/dashboard/index/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-grid-1x2"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M6 1H1v14h5zm9 0h-5v5h5zm0 9v5h-5v-5zM0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1zm1 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1z" />
+                </svg> 
+                Dashboard
+              </a>
+            </li>
+            <% }else { %>
+              <li>
+                <a href="/dashboardadm/index/">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-grid-1x2"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="M6 1H1v14h5zm9 0h-5v5h5zm0 9v5h-5v-5zM0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1zm1 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1z" />
+                  </svg> 
+                  Dashboard
+                </a>
+              </li>
+              <% } %>
+                <% if(user.office==="Administrador" ) { %>
+                  <li>
+                    <a href="/allUsers/index/">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+                        class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                        <path fill-rule="evenodd"
+                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                      </svg> 
+                      Usuários
+                    </a>
+                  </li>
+                  <% } %>
+                    <li>
+                      <a href="/crm/index/"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+                          class="bi bi-heart" viewBox="0 0 16 16">
+                          <path
+                            d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+                        </svg> 
+                        CRM
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/home/index/">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-people"
+                          viewBox="0 0 16 16">
+                          <path
+                            d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
+                        </svg> 
+                        Leads
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/product/index/">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+                          class="bi bi-box-seam" viewBox="0 0 16 16">
+                          <path
+                            d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2zm3.564 1.426L5.596 5 8 5.961 14.154 3.5zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464z" />
+                        </svg>  
+                        Produtos
+                      </a>
+                    </li>
+                    <li class="selected-page">
+                      <a href="/sales/index/">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+                          class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                          <path
+                            d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z" />
+                        </svg> 
+                        Vendas
+                      </a>
+                    </li>
+                  
+
+                    <li id="sentings">
+                      <a href="/settings/index/">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-gear"
+                          viewBox="0 0 16 16">
+                          <path
+                            d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
+                          <path
+                            d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
+                        </svg> 
+                        Configurações
+                      </a>
+                    </li>
+                    <li id="exit">
+                      <a href="/home/index/logout">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+                          class="bi bi-unindent" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd"
+                            d="M13 8a.5.5 0 0 0-.5-.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H12.5A.5.5 0 0 0 13 8" />
+                          <path fill-rule="evenodd" d="M3.5 4a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 1 0v-7a.5.5 0 0 0-.5-.5" />
+                        </svg> 
+                        Logout
+                      </a>
+                    </li>
+        </ul>
+      </div>
+      <main class="dash">
+        <div class="geral-view">
+          <div class="total-leads">
+            <div class="text-total-lead">
+              <p class="total-lead-title">
+                Receita Total
+              </p>
+              
+            </div>
+
+            <h3 id="leads-count">
+              <% if(allSalesValues> 0 ) {%>
+                R$ <%= allSalesValues %>,00
+                  <% }else { %>
+                    R$ 00,00
+                    <% } %>
+            </h3>
+          </div>
+
+          <div class="total-view">
+            <div class="text-total-view">
+              <p class="total-view-p">
+                Total de Ordens
+              </p>
+              
+            </div>
+            <h3 id="today-count" class="count">
+              <%= allSales.length %>
+
+            </h3>
+          </div>
+          <div class="total-view">
+            <div class="text-total-view">
+              <p class="total-view-p">
+                Vendas Fechadas
+              </p>
+
+            </div>
+            <h3 id="count-month" class="count">
+              <%= allSalesFinish %>
+            </h3>
+          </div>
+
+        </div>
+        <% let i=0 ; %>
+          <tbody>
+            <section class="area-product w-100">
+              <table class="table table-borderless table-hover">
+                  <div class="buttons-action position-relative end-0">
+                    <button type="button" id="export" class="btn btn-transparent "><svg
+                      xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-box-arrow-up" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                          d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1z" />
+                        <path fill-rule="evenodd"
+                          d="M7.646.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 1.707V10.5a.5.5 0 0 1-1 0V1.707L5.354 3.854a.5.5 0 1 1-.708-.708z" />
+                      </svg></button>
+                  </div>
+                  <thead class="table-light">
+                    <tr>
+                      <th>ID</th>
+                      <th>Cliente</th>
+                      <th>Produto/Serviço</th>
+                      <th>Categoria</th>
+                      <th>Preço</th>
+                      <th>Descontos</th>
+                      <th>Subtotal</th>
+                      <th> Vendedor </th>
+                      <th>Status</th>
+                      
+                      <th class="d-flex align-items-center justify-items-center">Ações 
+                        <a class="mx-3"  data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+                        class="bi bi-plus-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                        <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                      </svg> 
+                    </a>
+                  </th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <% if(allSales.length>0 ) { %>
+                
+                <% allSales.forEach((sale)=> { %>
+
+                      <% i++ %>
+                        <tr id="lead-<%= i %>">
+                          <td>
+                            <%= i %>
+                          </td>
+                          <td id="nome-lead">
+                            <div class="lead-img">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black"
+                                class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                                <path
+                                  d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z" />
+                              </svg>
+                            </div>
+                            <span class="badge rounded-pill text-bg-dark">
+                              <%= sale.client %>
+                            </span>
+                          </td>
+                          <td>
+                            <span class="badge rounded-pill text-bg-secondary">
+                              <%= sale.productOurService %>
+                            </span>
+
+                          </td>
+                        
+                          <td>
+                            <span class="badge rounded-pill text-bg-secondary">
+                              <%= sale.productCategory %>
+                            </span>
+                          </td>
+                          <td>
+                            <span class="badge rounded-pill text-bg-secondary">R$ <%= sale.price %></span>
+
+                          </td>
+                          <td>
+                            <span class="badge rounded-pill text-bg-danger"> - R$ <%= sale.descount %><svg
+                                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                  class="bi bi-arrow-down-short" viewBox="0 0 16 16">
+                                  <path fill-rule="evenodd"
+                                    d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4" />
+                                </svg></span>
+                          </td>
+                          <td>
+                            <% if( sale.subtotal < 0) { %>
+                              <span class="badge rounded-pill text-bg-danger"> R$ <%= sale.subtotal %><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-arrow-up-short" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                      d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5" />
+                                  </svg></span>
+                              <% } else { %>
+                                <span class="badge rounded-pill text-bg-success"> R$ <%= sale.subtotal %><svg
+                                      xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                      class="bi bi-arrow-up-short" viewBox="0 0 16 16">
+                                      <path fill-rule="evenodd"
+                                        d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5" />
+                                    </svg></span>
+                                <% } %>
+
+                          </td>
+
+                         
+                          <td>
+                            <span class="badge rounded-pill text-bg-primary">
+                              <%= sale.saller %><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                  fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                  <path
+                                    d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+                                </svg>
+                            </span>
+
+                          </td>
+                          <% if (sale.status==="Concluída" ) { %>
+                            <td>
+
+                              <span class="badge text-bg-success"> <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                  height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                  <path
+                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
+                                </svg>
+                                <%= sale.status %>
+                              </span>
+                            </td>
+                            <% }else { %>
+                              <% if(sale.status==="Pendente" ){ %>
+                                <td>
+                                  <span class="badge text-bg-warning "> <svg xmlns="http://www.w3.org/2000/svg"
+                                      width="16" height="16" fill="currentColor" class="bi bi-stopwatch"
+                                      viewBox="0 0 16 16">
+                                      <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z" />
+                                      <path
+                                        d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3" />
+                                    </svg>
+                                    <%= sale.status %>
+                                  </span>
+
+                                </td>
+                                <% }else { %>
+                                  <td>
+                                    <span class="badge text-bg-danger"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle"
+                                        viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                        <path
+                                          d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+                                      </svg>
+                                      <%= sale.status %>
+                                    </span>
+                                  </td>
+                                  <% }%>
+                                    <% } %>
+                                      <td class="d-flex">
+                                        <button type="button" class="btn btn-dark s," data-bs-toggle="offcanvas"
+                                          data-bs-target="#OffcanvasRight<%= i %>"
+                                          aria-controls="OffcanvasRight<%= i %>"><svg xmlns="http://www.w3.org/2000/svg"
+                                            width="16" height="16" fill="currentColor" class="bi bi-pen"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                              d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
+                                          </svg>
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="offcanvas  offcanvas-end  w-50" tabindex="-1"
+                                          id="OffcanvasRight<%= i %>" aria-labelledby="offcanvasRightLabel">
+                                          <div class="offcanvas-header">
+                                            <h5 class="offcanvas-title fs-5" id="offcanvasRightLabel">Editar Venda</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                              aria-label="Close"></button>
+                                          </div>
+                                          <div class="offcanvas-body">
+                                            <fieldset id="register-area"
+                                              class="register-area d-flex align-items-start justify-content-center">
+                                              <form class="row g-3 w-100" action="/sale/edit/<%= sale._id %>"
+                                                method="post">
+                                                <div class="col-md-6">
+                                                  <label for="inputClient-edit-<%=i %>"
+                                                    class="form-label">Cliente</label>
+                                                  <select class="form-select inputClient" id="inputClient-edit-<%= i %>"
+                                                    required name="client" aria-label="Default select example">
+                                                    <option selected disabled>
+                                                      <%= sale.client %>
+                                                    </option>
+                                                    <% allLeads.forEach(lead=>{ %>
+                                                      <option value="<%= lead.name %>">
+                                                        <%= lead.name %>
+                                                      </option>
+                                                      <% }) %>
+
+                                                        <option value="Nenhum">Nenhum</option>
+                                                  </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                  <label for="inputEmail-edit-<%=i%>" class="form-label">E-mail</label>
+                                                  <input type="email" class="form-control " name="email"
+                                                    value="<%= sale.email %>" placeholder="exemplo@teste.com.br"
+                                                    required id="inputEmail-edit-<%=i%>">
+                                                </div>
+                                                <div class="col-md-6">
+                                                  <label for="inputTel-edit-<%=i%>" class="form-label">Telefone</label>
+                                                  <input type="text" name="tel" class="form-control inputTel"
+                                                    value="<%= sale.tel %>" required id="inputTel-edit-<%=i%>"
+                                                    placeholder="(00) 0000-0000">
+                                                </div>
+                                                <div class="col-md-6">
+                                                  <label for="material-edit-<%=i%>" class="form-label">Categoria <span
+                                                      style="color: #0B5ED7; font-weight: bold; cursor: pointer;"
+                                                      data-bs-toggle="offcanvas"
+                                                      data-bs-target="#offcanvasWithBothOptions"
+                                                      aria-controls="offcanvasWithBothOptions">+</span></label>
+                                                  <select class="form-select" required name="productCategory"
+                                                    id="material-edit-<%=i%>" aria-label="Default select example">
+                                                    <option selected disabled>
+                                                      <%= sale.productCategory%>
+                                                    </option>
+                                                    <% categories.forEach(category=>{ %>
+                                                      <option value="<%= category.name %>">
+                                                        <%= category.name %>
+                                                      </option>
+                                                      <% }) %>
+                                                        <option value="Nenhum">Nenhum</option>
+                                                  </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                  <label for="TipoDeMaterial-edit-<%=i%>"
+                                                    class="form-label">Produto/Serviço</label>
+                                                  <select class="form-select " required name="productOurService"
+                                                    id="TipoDeMaterial-edit-<%=i%>" aria-label="Default select example">
+                                                    <option selected disabled>
+                                                      <%= sale.productOurService%>
+                                                    </option>
+                                                    <option value="Nenhum">Nenhum</option>
+                                                  </select>
+                                                </div>
+                                               
+                                                <div class="col-md-6">
+                                                  <label for="inputPrice-<%= i %>" class="form-label ">Preço R$</label>
+                                                  <input type="text" required name="price" value="<%= sale.price%>"
+                                                    format="currency" precision="2" class="form-control money"
+                                                    id="inputPrice-<%= i %>" placeholder="R$ 00,00">
+                                                </div>
+                                                
+                                                <div class="col-md-6">
+                                                  <label for="inputDescount-<%= i %>" class=" form-label">Desconto
+                                                    Aplicado R$</label>
+                                                  <input type="text" required name="descount" format="currency"
+                                                    precision="2" class="form-control money" id="inputDescount-<%= i %>"
+                                                    value="<%= sale.descount%>" placeholder="R$ 00,00">
+                                                </div>
+                                                <div class="col-md-6">
+                                                  <label for="inputTotal-<%= i %>" class="form-label">Subtotal
+                                                    R$</label>
+                                                  <input type="text" class="form-control money " name="subtotal"
+                                                    value="<%= sale.subtotal%>" required placeholder="R$ 00,00"
+                                                    id="inputTotal-<%= i %>">
+                                                </div>
+                                                <div class="col-md-4">
+                                                  <label for="inputSaleCode" class="form-label">Código de Venda</label>
+                                                  <input type="text" class="form-control" value="<%= sale.code%>"
+                                                    name="code" required id="inputSaleCode">
+                                                </div>
+                                                <div class="col-md-4">
+                                                  <label for="payment" class="form-label">Forma de Pagamento</label>
+                                                  <select class="form-select" required name="payment" id="payment"
+                                                    aria-label="Default select example">
+                                                    <option selected disabled>
+                                                      <%= sale.payment%>
+                                                    </option>
+                                                    <option value="Pix ">
+                                                      Pix
+                                                    </option>
+                                                    <option value="Boleto">
+                                                      Boleto
+                                                    </option>
+                                                    <option value="Cartão">
+                                                      Cartão
+                                                    </option>
+                                                    <option value="Nenhum">Nenhum</option>
+                                                  </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                  <label for="status" class="form-label">Status da Venda</label>
+                                                  <select class="form-select" required name="status" id="status"
+                                                    aria-label="Default select example">
+                                                    <option selected disabled>
+                                                      <%= sale.status%>
+                                                    </option>
+                                                    <option value="Concluída">
+                                                      Concluída
+                                                    </option>
+                                                    <option value="Pendente">
+                                                      Pendente
+                                                    </option>
+                                                    <option value="Cancelada">
+                                                      Cancelada
+                                                    </option>
+                                                    <option value="Nenhum">Nenhum</option>
+                                                  </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                  <label for="inputDate" class="form-label">Date da Venda*</label>
+                                                  <input required type="datetime-local" value="<%= sale.date%>"
+                                                    name="date" class="form-control" id="inputDate">
+                                                </div>
+                                                <div class="col-md-6">
+                                                  <label for="saller" class="form-label">Vendedor</label>
+                                                  <select class="form-select" required name="saller" id="saller"
+                                                    aria-label="Default select example">
+                                                    <option selected disabled>
+                                                      <%= sale.saller%>
+                                                    </option>
+                                                    <%allUsers.forEach(saller=>{ %>
+                                                      <option value="<%= saller.nome %>">
+                                                        <%= saller.nome %>
+                                                      </option>
+                                                      <% }) %>
+                                                        <option value="Nenhum">Nenhum</option>
+                                                  </select>
+                                                </div>
+                                                <div class="col-12">
+                                                  <button type="submit" class="btn btn-primary">Editar Venda</button>
+                                                </div>
+                                              </form>
+                                            </fieldset>
+                                          </div>
+                                        </div>
+
+                                        <!--Button delete-->
+
+                                        <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal"
+                                          data-bs-target="#staticBackdrop-<%= i %>"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path
+                                              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                            <path
+                                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                                          </svg></button>
+
+                                        <!---Modal  Delete-->
+                                        <div class="modal fade" id="staticBackdrop-<%= i %>" data-bs-backdrop="static"
+                                          data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                          aria-hidden="true">
+                                          <div class="modal-dialog">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Deseja Apagar os
+                                                  Dados Dessa venda? </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                  aria-label="Close"></button>
+                                              </div>
+                                              <div class="modal-body">
+                                                Ao clicar em "apagar", você estará realizando uma ação irreversível.
+                                                Certifique-se de que deseja prosseguir, pois não será possível recuperar
+                                                os dados depois.
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                  data-bs-dismiss="modal">Close</button>
+                                                <a href="/sale/delete/<%= sale._id  %>">
+                                                  <button type="button" class="btn btn-danger">Apagar</button>
+                                                </a>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <button type="button" id="export2-pdf" class="btn btn-primary mx-1"
+                                          data-bs-toggle="modal" data-bs-target="#staticBackdropPDF-<%= i %>"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-box-arrow-up" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                              d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1z" />
+                                            <path fill-rule="evenodd"
+                                              d="M7.646.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 1.707V10.5a.5.5 0 0 1-1 0V1.707L5.354 3.854a.5.5 0 1 1-.708-.708z" />
+                                          </svg>
+                                        </button>
+                                        <div class="modal modal-xl  fade modal-export" id="staticBackdropPDF-<%= i %>"
+                                          data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                          aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Exportar Romaneio
+                                                </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                  aria-label="Close"></button>
+                                              </div>
+                                              <div id="content-pdf-<%=i%>" class="modal-body" >
+                                                <div class="business-info">
+                                                  <div class="logotipo-roman"><img src="/utilites/logo.jpeg" alt="">
+                                                  </div>
+                                                  <div class="locals">
+                                                    <div class="enderess">
+                                                      <h2>Endereço: </h2>
+                                                      <p> ROD BR 262 KM 74/ZONA RURAL - MATIPÓ-MG - 35367000</p>
+                                                    </div>
+                                                    <div class="contact">
+                                                      <h2>Contato: </h2>
+                                                      <p>(31) 98849-0118 / (31) 99931-9950 / (31) 99856-3449</p>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div class="info-romaneio">
+                                                  <div class="area-rom">
+                                                    <h2>Romaneio de Venda</h2>
+                                                  </div>
+                                                  <div class="infos-area">
+
+
+                                                    <div class="info-sale">
+                                                      <div class="area-rom">
+                                                        <p><span>ID:</span>
+                                                          <%= sale._id %>
+                                                        </p>
+                                                      </div>
+                                                      <div class="area-rom">
+                                                        <p><span>Data: </span>
+                                                          <%= sale.date %>
+                                                        </p>
+                                                      </div>
+                                                      <div class="area-rom">
+                                                        <p><span>Vendedor:</span>
+                                                          <%= sale.saller %>
+                                                        </p>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+
+                                                <div class="info-Client">
+                                                  <div class="area-rom">
+                                                    <h2>Cliente</h2>
+                                                  </div>
+                                                  <div class="infos-area">
+                                                    <div class="area-rom">
+                                                      <p><span>ID:</span>
+                                                        <%= sale._id %>
+                                                      </p>
+                                                    </div>
+                                                    <div class="area-rom">
+                                                      <p><span>Nome:</span>
+                                                        <%= sale.client %>
+                                                      </p>
+                                                    </div>
+                                                    <div class="area-rom">
+                                                      <p><span>Email:</span>
+                                                        <%= sale.email %>
+                                                      </p>
+                                                    </div>
+                                                    <div class="area-rom">
+                                                      <p><span>Telefone:</span>
+                                                        <%= sale.tel %>
+                                                      </p>
+                                                    </div>
+                                                  </div>
+
+                                                </div>
+                                                <div class="sales">
+                                                  <div class="area-rom">
+                                                    <h2>Informações da Venda</h2>
+                                                  </div>
+
+                                                  <div class="infos-area">
+                                                    <div class="area-rom">
+                                                      <p><span>Produto/Serviço: </span>
+                                                        <%= sale.productOurService %>
+                                                      </p>
+                                                    </div>
+                                                    <div class="area-rom">
+                                                      <p><span>Categoria:</span>
+                                                        <%= sale.productCategory %>
+                                                      </p>
+                                                    </div>
+                                                    <div class="area-rom">
+                                                      <p><span>Peso : </span>
+                                                        <%= sale.weight %> (kg)
+                                                      </p>
+                                                    </div>
+                                                    <div class="area-rom">
+                                                      <p><span>Código da Venda:</span>
+                                                        <%= sale.code %>
+                                                      </p>
+                                                    </div>
+                                                    <div class="area-rom">
+                                                      <p><span>Forma de Pagamento:</span>
+                                                        <%= sale.payment %>
+                                                      </p>
+                                                    </div>
+                                                    <div class="area-rom">
+                                                      <p><span>Preço de Venda:</span> R$<%= sale.price %>
+                                                      </p>
+                                                    </div>
+                                                    <div class="area-rom">
+                                                      <p> <span>Descontos:</span> -R$ <%= sale.descount %>
+                                                      </p>
+                                                    </div>
+                                                    <div class="area-rom">
+                                                      <p><span> Subtotal :</span> R$ <%= sale.subtotal %>
+                                                      </p>
+                                                    </div>
+                                                  </div>
+                                                  <div class="final_value">
+                                                    <h2 class="rom-total">Total : <%= sale.subtotal %>
+                                                    </h2>
+                                                  </div>
+
+                                                </div>
+
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                  data-bs-dismiss="modal">Close</button>
+
+                                                <button type="button" class="btn btn-primary"
+                                                  onclick="downloadPDF('<%=i%>')">Exportar</button>
+
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                      </td>
+                        </tr>
+                        <% }); %> 
+                        <% }else { %>
+                          <div class="alert alert-warning text-center  position-fixed start-50 top-50" role="alert">
+                            Nenhuma Venda cadastrada.
+                          </div>
+          
+                          <% } %>
+                  </tbody>
+                </table>
+              </section>
+
+              
+
+      </main>
+      <div class="search">
+        <button id="button-search" class="button-seach">
+          <img src="/utilites/search.svg" alt="" />
+        </button>
+        <input id="Search-bar" placeholder="Pesquisar..." type="search" class="Barra-de-Pesquisa" />
+      </div>
+  </main>
+
+
+  <!-- SCRIPTSerer-->
+  <script>
+    const products = <%-JSON.stringify(allProducts) %>;
+    const leads = <%- JSON.stringify(allLeads) %>;
+    const sales = <%- JSON.stringify(allSales) %>;
+    const salesValues = <%-JSON.stringify(allSalesValues) %>
+
+      document.getElementById("material").addEventListener("change", () => {
+        let value = document.getElementById("material").value;
+        let filtredProducts = products.filter(product => product.category === value);
+        filtredProducts.forEach((products) => {
+          document.getElementById("TipoDeMaterial").innerHTML += `<option value="${products.name}">${products.name}</option>`
+        })
+      })
+
+    document.getElementById("inputClient").addEventListener("change", () => {
+      let value = document.getElementById("inputClient").value;
+      let filtredLeads = leads.filter(lead => lead.name === value);
+      filtredLeads.forEach((lead) => {
+        document.getElementById("inputEmail").value = lead.email
+        document.getElementById("inputTel").value = lead.tel
+      })
+    })
+    for (let i = 1; i < sales.length; i++) {
+      document.getElementById(`inputClient-edit-${i}`).addEventListener("change", () => {
+        let value = document.getElementById(`inputClient-edit-${i}`).value;
+        let filtredLeads = leads.filter(lead => lead.name === value);
+        filtredLeads.forEach((lead) => {
+          document.getElementById(`inputEmail-edit-${i}`).value = lead.email
+          document.getElementById(`inputTel-edit-${i}`).value = lead.tel
+        })
+      })
+      document.getElementById(`material-edit-${i}`).addEventListener("change", () => {
+        let value = document.getElementById(`material-edit-${i}`).value;
+        let filtredProducts = products.filter(product => product.category === value);
+        filtredProducts.forEach((products) => {
+          document.getElementById(`TipoDeMaterial-edit-${i}`).innerHTML += `<option value="${products.name}">${products.name}</option>`
+        })
+      })
+      document.getElementById(`inputTotal-${i}`).addEventListener("focus", () => {
+        let price = parseFloat(document.getElementById(`inputPrice-${i}`).value);
+        let discount = parseFloat(document.getElementById(`inputDescount-${i}`).value);
+
+        document.getElementById(`inputTotal-${i}`).value = (price - discount).toLocaleString('pt-br', { minimumFractionDigits: 2 });
+
+      })
+    }
+
+    //descoubt calculo 
+    document.getElementById("inputTotal").addEventListener("focus", () => {
+      let price = parseFloat(document.getElementById("inputPrice").value);
+      let discount = parseFloat(document.getElementById("inputDescount").value);
+      document.getElementById("inputTotal").value = (price - discount).toLocaleString('pt-br', { minimumFractionDigits: 2 });
+
+    })
+    let SaleValueFormated = salesValues.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+    document.getElementById("leads-count").innerHTML = SaleValueFormated;
+
+  </script> 
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+   integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="/js/html2pdf.js"></script>
+  <script src="/js/Jquery/code.jquery.com_jquery-3.7.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
+    integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <script type="module" src="/js/Home.js"></script>
+  <script src="/js/table2excel.js"></script>
+  <script src="/js/HomeAnimations.js"></script>
+</body>
+
+</html>

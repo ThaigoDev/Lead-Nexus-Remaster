@@ -1,0 +1,36 @@
+ <!--Modal de processo  -->
+ <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
+ aria-labelledby="staticBackdropLabel">
+ <div class="offcanvas-header">
+   <h5 class="offcanvas-title" id="staticBackdropLabel">Adicionar Processo</h5>
+   <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+ </div>
+ <div class="offcanvas-body">
+   <div>
+     <form class="row gy-2 gx-3 align-items-center" action="/process/create/" method="POST">
+       <div class="col-auto">
+         <label class="visually-hidden" for="autoSizingInput">Processo</label>
+         <input required type="text" class="form-control" id="autoSizingInput" name="process"
+           placeholder=" Nome do Processo">
+       </div>
+
+       <div class="col-auto">
+         <button type="submit" class="btn btn-primary">Cadastrar</button>
+       </div>
+     </form>
+   </div>
+   <ul class="list-group p-2">
+     <li class="list-group-item active" aria-current="true">Processo</li>
+     <% allProcess.forEach(prcss=>{ %>
+       <li class="list-group-item">
+         <div class="modal-item-body d-flex  align-items-center justify-content-start flex-row">
+           <%= prcss.process %>
+             <a class="position-absolute end-0 h-25 w-25" href="/process/delete/<%=prcss._id %>"><button
+                 type="button" class="btn-close" aria-label="Close"></button></a>
+         </div>
+       </li>
+       <% }) %>
+
+   </ul>
+ </div>
+</div>  

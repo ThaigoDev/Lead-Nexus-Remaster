@@ -1,0 +1,66 @@
+.register {
+  display: none;
+  z-index: 3;
+  background-color: white;
+  position: fixed; 
+  top: 2vh;
+  left: 13vw; 
+  top:10vh; 
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1); 
+  border-radius: 2vh;
+}
+.register h2 {
+  font-size: 1.7em;  
+  background-color: rgb(249, 249, 249);
+  text-align: center; 
+  padding: 2vh;
+
+}
+
+.close {
+  height: 4%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+.close:hover {
+  background-color: red;
+  transition: 1s;
+}
+.close img {
+  height: 100%;
+}
+.close img:hover {
+  filter: invert(1);
+}
+.close2 {
+  height: 7%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+.close2 img {
+  height: 100%;
+}
+
+
+.register-area { 
+  height: 100%;
+  background-color: white ;   
+ 
+
+
+} 
+.register-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} 

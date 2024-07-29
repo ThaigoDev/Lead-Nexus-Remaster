@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Arimo", sans-serif;
+}
+
+body {
+  overflow: hidden;
+}
+.content {
+  z-index: 0;
+  display: grid;
+  height: 100vh;
+  grid-template-areas:
+    "slidebar header"
+    "slidebar dash";
+  width: 100vw;
+}

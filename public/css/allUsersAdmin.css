@@ -1,0 +1,13 @@
+.input-area {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+}
+.input-area .inputs {
+  width: 100%;
+}
+
+.user-photo {
+  height: 20vh;
+}/*# sourceMappingURL=allUsersAdmin.css.map */

@@ -1,0 +1,219 @@
+<section class="area-product w-100">
+  <table class="table  table-borderless table-hover">
+    
+    <div class="buttons-action position-relative end-0">
+      <button type="button" id="export"  class="btn btn-transparent"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1z"/>
+        <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 1.707V10.5a.5.5 0 0 1-1 0V1.707L5.354 3.854a.5.5 0 1 1-.708-.708z"/>
+      </svg></button>
+      
+    </div>
+    <thead class="table-light">
+      <tr>
+        <th>ID</th>
+        <th>Produto/Serviço</th>
+        <th>Categoria</th>
+        <th> Marca </th>
+        <th>Preço</th>
+        <th class="d-flex align-items-center justify-items-center">Ações 
+               <a class="mx-3" data-bs-toggle="offcanvas"
+               data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-plus-circle"
+               viewBox="0 0 16 16">
+               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+               <path
+               d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+              </svg> 
+              
+            </a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+          <% if(allProducts.length>0 ) { %>
+          <% let i=0 ; %>
+            <% allProducts.forEach((product)=> { %>
+
+              <% i++ %>
+                <tr id="lead-" <% i %> >
+                  <td>
+                    <%= i %>
+                  </td>
+                  <td id="nome-lead"> 
+                    <% if(product.productPhoto) { %> 
+                      <div >
+                        <img class="img-thumbnail" width="40" height="50" src="/uploads/<%= product.productPhoto %>" alt="">
+                      </div> 
+                     <% } else { %> 
+                      <div  class="img-thumbnail" class="lead-img">
+                        <svg  xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black" class="bi bi-box-seam" viewBox="0 0 16 16">
+                          <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2zm3.564 1.426L5.596 5 8 5.961 14.154 3.5zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464z"/>
+                        </svg>
+                      </div> 
+                     <%  }%>
+                 
+                    <span class="badge rounded-pill text-bg-dark"> <%= product.name %></span>
+                   
+                  </td>
+                  <td> 
+                    <% if(product.category ==="Nenhum" || product.category ==="Selecione a Categoria" ) { %> 
+                      <span class="badge rounded-pill text-bg-warning"> <%= product.category %></span>
+                     <% } else { %>
+                      <span class="badge rounded-pill text-bg-secondary">  <%= product.category %></span>
+                    <% } %>
+                    
+                  </td>
+                  
+                  <td> 
+                    <span class="badge rounded-pill text-bg-primary"> <%= product.brand %></span>
+                   
+                  </td>
+                  
+                  <td> 
+                    <% if( product.price  < 0) { %>
+                      <span class="badge rounded-pill text-bg-danger">  R$ <%= product.price %></span>
+                  <% } else { %>
+                    <span class="badge rounded-pill text-bg-success">  R$ <%= product.price %></span>
+                  <% } %>
+                    
+                  </td>
+                  <td class="d-flex">
+                    <button type="button" class="btn btn-dark s," data-bs-toggle="offcanvas"
+                      data-bs-target="#OffcanvasRight<%= i %>" aria-controls="OffcanvasRight<%= i %>"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-pen" viewBox="0 0 16 16">
+                        <path
+                          d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
+                      </svg>
+                    </button>
+                    <!-- Modal -->
+                    <div class="offcanvas  offcanvas-end  w-50" tabindex="-1" id="OffcanvasRight<%= i %>"
+                      aria-labelledby="offcanvasRightLabel">
+                      <div class="offcanvas-header">
+                        <h5 class="offcanvas-title fs-5" id="offcanvasRightLabel">Editar Produto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                          aria-label="Close"></button>
+                      </div>
+                      <div class="offcanvas-body">
+                        <fieldset id="register-area"class="register-area d-flex align-items-center justify-content-start flex-column ">
+                          <form  enctype="multipart/form-data" class="row g-3 w-100 " action="/product/edit/<%=product._id%>" method="post">
+                            <div class="w-100 d-flex align-items-center justify-content-start ">
+                              <div class="profile-pic">
+                                <label class="-label" for="file-<%= i %>">
+                                  <span class="glyphicon glyphicon-camera"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
+                                    <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4z"/>
+                                    <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5m0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+                                  </svg></span>
+                                  <span>Change Image</span>
+                                </label>  
+                                <% if(product.productPhoto)  { %>
+                                  <input id="file-<%= i %>" type="file" name="productPhoto-edited" onchange="loadFileEdit(event,'<%=i%>')"/>
+                                <img src="/uploads/<%= product.productPhoto %>"  class="output"  id="output-<%= i %>" width="200" />
+                                <% }else { %>
+                                  <input id="file-<%= i %>" type="file" name="productPhoto-edited" onchange="loadFileEdit(event,'<%=i%>')"/>
+                                <img src="/utilites/user-photo.png" class="output"  id="output-<%= i %>" width="200" />
+                                 <% }%>
+                                
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="inputProduct4" class="form-label">Nome do Produto</label>
+                              <input type="text" class="form-control" required name="name" value="<%= product.name %>"
+                                id="inputProduct4">
+                            </div>
+                            <div class="col-md-6">
+                              <label for="inputSKU4" class="form-label">SKU</label>
+                              <input type="text" name="sku" required value="<%= product.sku %>" class="form-control"
+                                id="inputSKU4" placeholder="SKU-CODE">
+                            </div>
+                            <div class="col-md-6">
+                              <label for="inputCategory<%=i%>" class="form-label">Categoria <span
+                                  style="color: #0B5ED7; font-weight: bold; cursor: pointer;"
+                                  data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+                                  aria-controls="offcanvasWithBothOptions">+</span></label>
+                              <select required id="inputCategory<%=i%>" class="form-select" name="category"
+                                aria-label="Default select example">
+                                <option selected>Selecione a Categoria</option>
+                                <% categories.forEach(category=>{ %>
+                                  <option value="<%= category.name %>">
+                                    <%= category.name %>
+                                  </option>
+                                  <% }) %>
+                                    <option value="Nenhum">Nenhum</option>
+                              </select>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="inputDesc" class="form-label">Descrição</label>
+                              <input required type="text" class="form-control" value="<%= product.description %>"
+                                name="description" id="inputDesc" placeholder="Descrição do Produto">
+                            </div>
+                            
+                            <div class="col-md-4">
+                              <label for="inputWeight" class="form-label">Preço R$</label>
+                              <input required type="text" name="price" class=" money form-control" value="<%= product.price %>"
+                                id="inputWeight" placeholder="R$ 00,00">
+                            </div>
+                            <div class="col-md-4">
+                              <label for="inputBrand" class="form-label">Marca</label>
+                              <input required type="text" name="brand" value="<%= product.brand %>" class="form-control"
+                                id="inputBrand">
+                            </div>
+                            
+                            <div class="col-md-4">
+                              <label for="inputDate" class="form-label">Data</label>
+                              <input required type="datetime-local" value="<%= product.date %>" name="date"
+                                class="form-control" id="inputDate">
+                            </div>
+
+                            <div class="col-12">
+                              <button type="submit" class="btn btn-primary">Editar Produto</button>
+                            </div>
+                          </form>
+                        </fieldset>
+                      </div>
+                    </div>
+
+                    <!--Button delete-->
+                    <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop-<%= i %>"><svg xmlns="http://www.w3.org/2000/svg"
+                      width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path
+                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                      <path
+                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                    </svg></button>
+              
+                  <!---Modal  Delete-->
+                  <div class="modal fade" id="staticBackdrop-<%= i %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="staticBackdropLabel">Deseja Apagar os Dados Desse Produto? </h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          Ao clicar em "apagar", você estará realizando uma ação irreversível. Certifique-se de que deseja prosseguir, pois não será possível recuperar os dados depois.
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> 
+                          <a href="/product/delete/<%= product._id  %>">
+                            <button type="button" class="btn btn-danger">Apagar</button>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
+
+                  </td>
+                </tr>
+            <% }); %> 
+            <% }else { %>
+              <div class="alert alert-warning text-center  position-fixed start-50 top-50" role="alert">
+                Nenhum produto cadastrado.
+              </div>
+        
+              <% } %>
+        </tbody>
+      </table>
+    </section>
+
+   

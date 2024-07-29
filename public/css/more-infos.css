@@ -1,0 +1,112 @@
+.more-leads-area {
+  background-color: #e3e3e3;
+  position: fixed;
+  display: none;
+  bottom: 15%;
+  left: 25%;
+  justify-content: center;
+  flex-direction: column;
+  width: 60vw;
+  padding: 2vh;
+  z-index: 3;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-radius: 2vh;
+}
+.simple-lead-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.lead-local-infos-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lead-img-more {
+  height: 20vh;
+  width: 20%;
+  z-index: 2;
+}
+.lead-img-more img {
+  height: 100%;
+}
+.contact-infos {
+  width: 80%;
+  display: flex;
+  text-align: justify;
+  justify-content: center;
+  flex-direction: column;
+}
+.lead-id-more,
+.lead-name-more,
+.lead-tel-more,
+.lead-mail-more,
+.lead-material-tipo-more,
+.lead-precess-more {
+  color: black;
+  padding: 2vh;
+  margin: 1vh;
+
+  border-bottom: 1px solid black;
+}
+.lead-id-more p,
+.lead-name-more p,
+.lead-tel-more p,
+.lead-mail-more p,
+.lead-material-tipo-more p,
+.lead-precess-more p {
+  font-weight: bold;
+}
+.lead-id-more span,
+.lead-name-more span,
+.lead-tel-more span,
+.lead-mail-more span,
+.lead-precess-more span,
+.lead-material-tipo-more span {
+  font-weight: normal;
+}
+
+.lead-uf-more,
+.lead-cidade-more,
+.lead-material-more {
+  color: black;
+  padding: 2vh;
+  border-bottom: 1px solid black;
+  margin: 1vh;
+}
+.lead-uf-more p,
+.lead-cidade-more p,
+.lead-material-more p {
+  color: black;
+  font-weight: bold;
+}
+.lead-uf-more span,
+.lead-cidade-more span,
+.lead-material-more span {
+  color: black;
+  font-weight: lighter;
+}
+#more-lead {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.more-btn {
+  height: 2.5vh;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4vh;
+  border: none;
+  cursor: pointer;
+}
+.more-btn img {
+  height: 80%;
+}
+.more-btn img:hover {
+  filter: grayscale(1);
+  transform: scale(1.05);
+}

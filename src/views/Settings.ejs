@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<!-- HEAD - META DADOS -->
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/settings.css" />
+  <link rel="stylesheet" href="/css/header.css" /> 
+
+  <link rel="stylesheet" href="/css/profilePhoto-settings.css" />
+  <link rel="stylesheet" href="/css/sideBar.css" />
+  <link rel="stylesheet" href="/css/settings-principal-area.css" />
+  <link rel="shortcut icon" href="/utilites/favicon.ico" type="image/x-icon">  
+  <link rel="stylesheet" href="/css/spinner.css">
+
+  <title>Senttings</title>
+</head>
+<!--CONTENT-PRINCIPAL-->
+
+<body> 
+  <main class="content">
+    <%- include("Header.ejs",{user: user}) %>
+    <!--SLIDE-BAR-->
+    <div class="slidebar">
+      <div class="logo">
+          <img src="/utilites/logo.png" alt="LOGO" />
+      </div>
+      <ul class="links-bar">
+        <% if(user.office!== "Administrador") { %>  
+          <li> 
+            <a href="/dashboard/index/">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+                class="bi bi-grid-1x2" viewBox="0 0 16 16">
+                <path
+                  d="M6 1H1v14h5zm9 0h-5v5h5zm0 9v5h-5v-5zM0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1zm1 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1z" />
+              </svg> 
+              Dashboard
+            </a>
+          </li> 
+          <% }else { %>
+            <li> 
+              <a href="/dashboardadm/index/"> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+                  class="bi bi-grid-1x2" viewBox="0 0 16 16">
+                  <path
+                    d="M6 1H1v14h5zm9 0h-5v5h5zm0 9v5h-5v-5zM0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1zm1 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1z" />
+                </svg> 
+                Dashboard
+              </a> 
+
+            </li> 
+         <% } %>
+          <% if(user.office ==="Administrador") { %>
+            <li>
+              <a href="/allUsers/index/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                </svg> 
+                Usuários
+              </a>
+            </li>
+            <% } %> 
+          <li>
+              <a href="/crm/index/"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+                      class="bi bi-heart" viewBox="0 0 16 16">
+                      <path
+                          d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+                  </svg> 
+                  CRM
+                </a>
+          </li>
+          <li>
+              <a href="/home/index/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-people" viewBox="0 0 16 16">
+                  <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"/>
+                </svg> 
+                Leads
+              </a>
+          </li> 
+          
+          <li>
+              <a href="/product/index/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-box-seam" viewBox="0 0 16 16">
+                  <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2zm3.564 1.426L5.596 5 8 5.961 14.154 3.5zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464z"/>
+                </svg> 
+                Produtos
+              </a>
+          </li> 
+          <% if(user.office ==="Administrador") { %> 
+            <li>
+            <a href="/sales/index/">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-currency-dollar"
+                viewBox="0 0 16 16">
+                <path
+                  d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z" />
+              </svg> 
+              Vendas
+            </a>
+          </li> 
+          <% } %>
+           <li id="sentings" class="selected-page">
+              <a href="/settings/index/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-gear-fill" viewBox="0 0 16 16">
+                  <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                </svg>  
+                Configurações
+              </a> 
+
+          </li>
+          <li id="exit">
+              <a href="/home/index/logout">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+                      class="bi bi-unindent" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+                          d="M13 8a.5.5 0 0 0-.5-.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H12.5A.5.5 0 0 0 13 8" />
+                      <path fill-rule="evenodd" d="M3.5 4a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 1 0v-7a.5.5 0 0 0-.5-.5" />
+                  </svg> 
+                  Logout
+              </a>
+          </li>
+      </ul>
+  </div>
+    <main class="dash">
+      <!--seção dos users-->
+      <section class="user-data">
+        <fieldset class="user-form">
+          <form class="data-area" action="/settings/update/<%= user._id %> " method="post" enctype="multipart/form-data">
+            <div class="profile-pic">
+              <label class="-label" for="file">
+                <span class="glyphicon glyphicon-camera"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
+                  <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4z"/>
+                  <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5m0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+                </svg></span>
+                <span>Change Image</span>
+              </label> 
+              <% if(user.userPhoto)  { %>
+                <input id="file" type="file" name="userPhoto" value=""   accept="image/jpeg  image/jpg image/png" onchange="loadFile(event)"/>
+                <img src="/uploads/<%=user.userPhoto  %>" id="output" height="100" width="200" />
+              <% }else { %>
+                <input id="file" type="file" name="userPhoto" onchange="loadFile(event)"/>
+                <img src="/utilites/user-photo.png" id="output" width="200" />
+              <% }%>
+              
+            </div>
+            <div class="area-input">
+              <input id="nome" name="nome" required placeholder="Nome" type="text" value="<%= user.nome %>" />
+              <input id="dep" name="email" required placeholder="Email" type="email" value="<%= user.email%>" />
+              <button type="submit" class="btn">Salvar</button>
+            </div>
+          </form>
+        </fieldset>
+      </section>
+    </main>
+  </main>
+  <script src="/js/Jquery/code.jquery.com_jquery-3.7.1.js"></script>
+  <script src="/js/settings-animation.js"></script>
+
+</body>
+
+</html>
