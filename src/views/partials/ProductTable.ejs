@@ -57,23 +57,23 @@
                   </td>
                   <td> 
                     <% if(product.category ==="Nenhum" || product.category ==="Selecione a Categoria" ) { %> 
-                      <span class="badge rounded-pill text-bg-warning"> <%= product.category %></span>
+                       <%= product.category %>
                      <% } else { %>
-                      <span class="badge rounded-pill text-bg-secondary">  <%= product.category %></span>
+                      <%= product.category %>
                     <% } %>
                     
                   </td>
                   
                   <td> 
-                    <span class="badge rounded-pill text-bg-primary"> <%= product.brand %></span>
+                  <%= product.brand %>
                    
                   </td>
                   
                   <td> 
                     <% if( product.price  < 0) { %>
-                      <span class="badge rounded-pill text-bg-danger">  R$ <%= product.price %></span>
+                       R$ <%= product.price %>
                   <% } else { %>
-                    <span class="badge rounded-pill text-bg-success">  R$ <%= product.price %></span>
+                     R$ <%= product.price %>
                   <% } %>
                     
                   </td>
